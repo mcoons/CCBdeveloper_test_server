@@ -4,3 +4,4 @@
 *.swo
 *.DS_Store
 .idea/
+movies/node_modules
