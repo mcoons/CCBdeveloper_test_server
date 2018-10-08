@@ -1,27 +1,3 @@
-nginx:
-  build: ./nginx
-  ports:
-    - 3000:80
-  links:
-    - php
-  volumes_from:
-    - app
-
-php:
-  build: ./php/
-  expose:
-    - 9000
-  links:
-    - mysql 
-  volumes_from:
-    - app
-
-app:
-  image: php:7.0-fpm
-  volumes:
-    - ./movies/public:/var/www/html
-    - ./movies:/var/www
-  command: "true"
 
 mysql:
   image: mysql:latest
