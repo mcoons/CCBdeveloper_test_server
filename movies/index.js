@@ -2,7 +2,6 @@
 const express = require('express'); 
 const queries = require("./database/queries");
 
-
 // instantiate an instance of the express class as 'app'
 const app = express();              
 
@@ -24,7 +23,7 @@ app.get("/movies/title/:title", (request, response, next) => {
         .read('title', request.params.title)
         .then(movie => { 
             !movie.length
-            ? response.status(404).json({message: 'Title not found'})
+            ? response.status(404).json({message: `The title '${request.params.title}' was not found`})
             : response.json({movie});
         })
         .catch(err => { response.send("error: ", err); });
@@ -50,6 +49,9 @@ app.get("/movies/category/:category", (request, response, next) => {
             : response.json({movies}); })
         .catch(err => { response.send("error: ", err); });
 });
+
+// a catch all route to redirect to about page
+app.get('*', (request, response) => response.redirect('/'));      
 
 // tell the Express app to listen for requests on our port      
 app.listen(localport, () => console.log(`Server is now listening on port ${localport}`));
