@@ -4,7 +4,7 @@ module.exports = {
 
   list() {
       return database("michaels_view")
-          .select()
+          .select("fid","title","description","category","rating")
           .orderBy("title");
   },
 
