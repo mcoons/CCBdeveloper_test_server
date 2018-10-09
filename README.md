@@ -13,9 +13,9 @@ Development port is 3000 and production port is 3030.
   * navigate to http://localhost:3030/ for the help page
 
 ## Basic routes
-/ - This help page
+**/** - This help page
 
-/movies - Query all movies
+**/movies** - Query all movies
 
 -- The /movies route can be filtered by: title, rating and category
   *  /movies?title=*break*
@@ -39,13 +39,13 @@ Development port is 3000 and production port is 3030.
 ```
 ## Pre-filtered routes
 
-/movies/fid/*film_id* - Query by Film ID
+__/movies/fid/*film_id*__- Query by Film ID
 
-/movies/title/*movie_title* - Query by Film Title
+__/movies/title/*movie_title*__ - Query by Film Title
 
-/movies/rating/*rating* - Query by Rating
+__/movies/rating/*rating*__ - Query by Rating
 
-/movies/category/*category* - Query by Category
+__/movies/category/*category*__ - Query by Category
 
 ### Example object data returned
 ```javascript
@@ -63,7 +63,7 @@ Development port is 3000 and production port is 3030.
     "actors": "Penelope Guiness, Christian Gable, Lucille Tracy, Sandra Peck, Johnny Cage, Mena Temple, Warren Nolte, Oprah Kilmer, Rock Dukakis, Mary Keitel"
 }
 ```
-/actors/*movie_title* - Query actors by Film Title
+__/actors/*movie_title*__ - Query actors by Film Title
 
 ### Example object data returned
 ```javascript
