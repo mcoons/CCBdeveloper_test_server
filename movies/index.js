@@ -9,23 +9,51 @@ const app = express();
 const localport = 3030;
 
 // create a base route to direct root GET requests to
-//app.get('/', (request, response, next) => response.render('about.ejs'));   
 app.get('/', (request, response) => {
     let cats = '';
     queries
         .categories()
         .then(categories => {
-            categories.forEach(element => { cats += element.name+' '});
+            categories.forEach(element => { cats += element.name + ' ' });
             response.render('about.ejs',{"categories": cats})
         });
 });  
 
+
 app.get("/movies/", (request, response, next) => {
     queries
         .list()
-        .then(movies => { response.json({ movies }); })
+        .then(movies => { 
+
+            if (typeof request.query.title != 'undefined') {
+                movies = movies.filter(function(movie){
+                    if(movie.title.toLowerCase() === request.query.title.toLowerCase()){
+                        return movie;
+                    }
+                });
+            } 
+
+            if (typeof request.query.rating != 'undefined') {
+                movies = movies.filter(function(movie){
+                    if(movie.rating.toLowerCase() === request.query.rating.toLowerCase()){
+                        return movie;
+                    }
+                });
+            } 
+  
+            if (typeof request.query.category != 'undefined') {
+                movies = movies.filter(function(movie){
+                    if(movie.category.toLowerCase() === request.query.category.toLowerCase()){
+                        return movie;
+                    }
+                });
+            } 
+
+            response.json({ movies });                
+        })
         .catch(err => { response.send("error: ", err); });
 });
+
 
 app.get("/movies/title/:title", (request, response, next) => {
     queries
@@ -38,6 +66,7 @@ app.get("/movies/title/:title", (request, response, next) => {
         .catch(err => { response.send("error: ", err); });
 });
 
+
 app.get("/movies/rating/:rating", (request, response, next) => {
     queries
         .read('rating',  request.params.rating)
@@ -49,6 +78,7 @@ app.get("/movies/rating/:rating", (request, response, next) => {
         .catch(err => { response.send("error: ", err); });
 });
 
+
 app.get("/movies/category/:category", (request, response, next) => {
     queries
         .read('category',  request.params.category)
@@ -59,8 +89,10 @@ app.get("/movies/category/:category", (request, response, next) => {
         .catch(err => { response.send("error: ", err); });
 });
 
+
 // a catch all route to redirect to about page
 app.get('*', (request, response) => response.redirect('/'));      
+
 
 // tell the Express app to listen for requests on our port      
 app.listen(localport, () => console.log(`Server is now listening on port ${localport}`));

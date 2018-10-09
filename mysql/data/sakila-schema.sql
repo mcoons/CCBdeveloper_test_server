@@ -359,6 +359,7 @@ GROUP BY film.film_id, category.name;
 
 --
 -- View structure for view 'michaels_view'
+-- Customized view adding release_year and a join on language_id
 --
 
 CREATE VIEW michaels_view
