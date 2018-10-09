@@ -10,7 +10,7 @@ Development port is 3000 and production port is 3030.
     * `git clone https://github.com/mcoons/CCBdeveloper_test_server.git`
   * change to the repo directory
   * run `docker-compose up -d`
-  
+  * navigate to http://localhost:3030/ for the help page
 
 ## Basic routes
 / - This help page
