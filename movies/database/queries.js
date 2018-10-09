@@ -3,13 +3,13 @@ const database = require("./database-connection");
 module.exports = {
 
   list() {
-    return database("film_list")
+    return database("michaels_view")
       .select()
       .orderBy("title");
   },
 
   read(attribute, value) {
-    return database("film_list")
+    return database("michaels_view")
       .select()
       .where(attribute, value)
       .orderBy("title");
