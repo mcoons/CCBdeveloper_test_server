@@ -27,7 +27,8 @@ app.get("/movies/", (request, response, next) => {
 
             if (typeof request.query.title != 'undefined') {
                 movies = movies.filter(function(movie){
-                    if(movie.title.toLowerCase() === request.query.title.toLowerCase()){
+                    if(movie.title.toLowerCase() === request.query.title.toLowerCase() ||
+                       movie.title.toLowerCase().includes(request.query.title.toLowerCase())){
                         return movie;
                     }
                 });
@@ -50,6 +51,18 @@ app.get("/movies/", (request, response, next) => {
             } 
 
             response.json({ movies });                
+        })
+        .catch(err => { response.send("error: ", err); });
+});
+
+
+app.get("/movies/fid/:fid", (request, response, next) => {
+    queries
+        .read('FID', request.params.fid)
+        .then(movie => { 
+            !movie.length
+            ? response.status(404).json({message: `The FID '${request.params.fid}' was not found`})
+            : response.json({movie});
         })
         .catch(err => { response.send("error: ", err); });
 });
