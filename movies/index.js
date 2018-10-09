@@ -6,7 +6,10 @@ const queries = require("./database/queries");
 const app = express();              
 
 // set a local port number for development
-const localport = 3030;
+const localport = 3000;
+
+const env = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || localport;
 
 // create a base route to direct root GET requests to
 app.get('/', (request, response) => {
@@ -108,4 +111,4 @@ app.get('*', (request, response) => response.redirect('/'));
 
 
 // tell the Express app to listen for requests on our port      
-app.listen(localport, () => console.log(`Server is now listening on port ${localport}`));
+app.listen(port, () => console.log(`Server is now listening on port ${port} using the ${env} configuration.`));

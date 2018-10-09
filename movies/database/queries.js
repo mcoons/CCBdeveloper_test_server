@@ -18,7 +18,7 @@ module.exports = {
   categories() {
       return database("category")
           .select("name")
-          .orderBy("name")
+          .orderBy("name");
   }
 
   
