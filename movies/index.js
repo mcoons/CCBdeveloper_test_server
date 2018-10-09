@@ -9,7 +9,16 @@ const app = express();
 const localport = 3030;
 
 // create a base route to direct root GET requests to
-app.get('/', (request, response, next) => response.render('about.ejs'));   
+//app.get('/', (request, response, next) => response.render('about.ejs'));   
+app.get('/', (request, response) => {
+    let cats = '';
+    queries
+        .categories()
+        .then(categories => {
+            categories.forEach(element => { cats += element.name+' '});
+            response.render('about.ejs',{"categories": cats})
+        });
+});  
 
 app.get("/movies/", (request, response, next) => {
     queries

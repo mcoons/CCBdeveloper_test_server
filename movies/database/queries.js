@@ -13,6 +13,13 @@ module.exports = {
       .select()
       .where(attribute, value)
       .orderBy("title");
+  },
+
+  categories() {
+    return database("category")
+      .select("name")
+      .orderBy("name")
   }
+
   
 };
