@@ -1,17 +1,11 @@
-// require/import the express module(s)
 const express = require('express'); 
 const queries = require("./database/queries");
-
-// instantiate an instance of the express class as 'app'
 const app = express();              
 
-// set a local port number for development
 const localport = 3000;
-
 const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || localport;
 
-// create a base route to direct root GET requests to
 app.get('/', (request, response) => {
     let cats = '';
     queries
@@ -106,9 +100,7 @@ app.get("/movies/category/:category", (request, response, next) => {
 });
 
 
-// a catch all route to redirect to about page
 app.get('*', (request, response) => response.redirect('/'));      
 
 
-// tell the Express app to listen for requests on our port      
 app.listen(port, () => console.log(`Server is now listening on port ${port} using the ${env} configuration.`));
