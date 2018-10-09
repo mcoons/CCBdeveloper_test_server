@@ -7,8 +7,9 @@ Development port is 3000 and production port is 3030.
   * install Docker
     * Here are the instructions to install Docker for ([Mac](https://docs.docker.com/docker-for-mac/install/)) or ([Windows](https://docs.docker.com/docker-for-windows/install/)).
   * clone the repo
-  * change to the root directory
-  * run docker-compose up -d
+    * git clone https://github.com/mcoons/CCBdeveloper_test_server.git
+  * change to the repo directory
+  * run `docker-compose up -d`
   
 
 ## Basic routes
