@@ -33,7 +33,7 @@
 </pre>
             <h2>Pre-filtered routes</h2>
             <p><strong>/movies/fid/<em>film_id</em></strong> - Query by Film ID</p>
-            <p><strong>/movies/title/<em>movie_title</em></strong> - Query by Title</p>
+            <p><strong>/movies/title/<em>movie_title</em></strong> - Query by Film Title</p>
             <p><strong>/movies/rating/<em>rating</em></strong> - Query by Rating</p>
             <p><strong>/movies/category/<em>category</em></strong> - Query by Category</p>
             <h3>Example object data returned</h3>
@@ -51,6 +51,15 @@
     "features": "Deleted Scenes,Behind the Scenes",
     "actors": "Penelope Guiness, Christian Gable, Lucille Tracy, Sandra Peck, Johnny Cage, Mena Temple, Warren Nolte, Oprah Kilmer, Rock Dukakis, Mary Keitel"
 }
+</pre>
+
+        <p><strong>/actors/<em>movie_title</em></strong> - Query actors by Film Title</p>
+        <h3>Example object data returned</h3>
+<pre>
+{
+    "first_name": "PENELOPE",
+    "last_name": "GUINESS"
+}    
 </pre>
         </section>
     </body>

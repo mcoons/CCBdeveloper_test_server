@@ -99,6 +99,14 @@ app.get("/movies/category/:category", (request, response, next) => {
         .catch(err => { response.send("error: ", err); });
 });
 
+app.get("/actors/:title", (request, response, next) => {
+    queries.actors(request.params.title)
+    .then(actors => response.json({actors}))
+
+
+
+})
+
 
 app.get('*', (request, response) => response.redirect('/'));      
 
