@@ -9,12 +9,49 @@
     </head>
 
     <body>   
-        <h1>Moviegoers API</h1>
-        <h2>API usage</h2>
-        <p>/ - This help page</p>
-        <p>/movies - Query all movies.</p>
-        <p>/movies/title/<em>movie_title</em> - Query by Title.</p>
-        <p>/movies/rating/<em>rating</em> - Query by Rating</p>
-        <p>/movies/category/<em>category</em> - Query by Category</p>
+        <header>
+            <h1>Moviegoers API</h1>
+        </header>
+        <section>
+            <h2>Basic routes</h2>
+            <p><strong>/</strong> - This help page</p>
+            <p><strong>/movies</strong> - Query all movies</p>
+
+            <p> -- The /movies route can be filtered by: <em>title, rating and category</em></p>
+            <p> -- (i.e.  /movies?title=break&category=new&rating=g )</p>
+            <p> -- The <em>title</em> filter includes partial matching</p>
+            <p><strong>Current categories:</strong> <%= categories %></p>
+            <h3>Example object data returned</h3>
+<pre>
+{
+    "fid": 1,
+    "title": "ACADEMY DINOSAUR",
+    "description": "A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies",
+    "category": "Documentary",
+    "rating": "PG"
+}
+</pre>
+            <h2>Pre-filtered routes</h2>
+            <p><strong>/movies/fid/<em>film_id</em></strong> - Query by Film ID</p>
+            <p><strong>/movies/title/<em>movie_title</em></strong> - Query by Title</p>
+            <p><strong>/movies/rating/<em>rating</em></strong> - Query by Rating</p>
+            <p><strong>/movies/category/<em>category</em></strong> - Query by Category</p>
+            <h3>Example object data returned</h3>
+<pre>
+{
+    "FID": 1,
+    "title": "ACADEMY DINOSAUR",
+    "description": "A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies",
+    "released": 2006,
+    "category": "Documentary",
+    "language": "English",
+    "price": 0.99,
+    "length": 86,
+    "rating": "PG",
+    "features": "Deleted Scenes,Behind the Scenes",
+    "actors": "Penelope Guiness, Christian Gable, Lucille Tracy, Sandra Peck, Johnny Cage, Mena Temple, Warren Nolte, Oprah Kilmer, Rock Dukakis, Mary Keitel"
+}
+</pre>
+        </section>
     </body>
 </html>    

@@ -358,6 +358,34 @@ FROM category LEFT JOIN film_category ON category.category_id = film_category.ca
 GROUP BY film.film_id, category.name;
 
 --
+-- View structure for view 'michaels_view'
+-- Customized view adding release_year and a join on language_id
+--
+
+CREATE VIEW michaels_view
+AS
+SELECT sakila.film.film_id AS FID, 
+sakila.film.title AS title, 
+sakila.film.description AS description, 
+sakila.film.release_year AS released,
+sakila.category.name AS category, 
+sakila.language.name AS language,
+sakila.film.rental_rate AS price,
+sakila.film.length AS length, 
+sakila.film.rating AS rating, 
+sakila.film.special_features AS features,
+GROUP_CONCAT(CONCAT(CONCAT(UCASE(SUBSTR(sakila.actor.first_name,1,1)),
+	LCASE(SUBSTR(sakila.actor.first_name,2,LENGTH(sakila.actor.first_name))),_utf8' ',CONCAT(UCASE(SUBSTR(sakila.actor.last_name,1,1)),
+	LCASE(SUBSTR(sakila.actor.last_name,2,LENGTH(sakila.actor.last_name)))))) SEPARATOR ', ') AS actors
+FROM sakila.category 
+LEFT JOIN sakila.film_category ON sakila.category.category_id = sakila.film_category.category_id 
+LEFT JOIN sakila.film ON sakila.film_category.film_id = sakila.film.film_id
+JOIN sakila.film_actor ON sakila.film.film_id = sakila.film_actor.film_id
+JOIN sakila.actor ON sakila.film_actor.actor_id = sakila.actor.actor_id
+JOIN sakila.language ON sakila.film.language_id = sakila.language.language_id
+GROUP BY sakila.film.film_id, sakila.category.name;
+
+--
 -- View structure for view `staff_list`
 --
 
